@@ -17,7 +17,15 @@ pipeline {
 
         stage('Maven Test') {
             steps {
-                sh 'mvn clean test'
+                sh '''
+                    echo "JAVA_HOME=$JAVA_HOME"
+                    echo "PATH=$PATH"
+                    which java
+                    java -version
+                    which mvn
+                    mvn -version
+                    mvn clean test
+                '''
             }
         }
 
