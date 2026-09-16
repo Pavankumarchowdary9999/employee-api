@@ -18,12 +18,13 @@ pipeline {
         stage('Maven Test') {
             steps {
                 sh '''
-                    echo "JAVA_HOME=$JAVA_HOME"
-                    echo "PATH=$PATH"
-                    which java
+                    echo "Java version:"
                     java -version
-                    which mvn
+
+                    echo "Maven version:"
                     mvn -version
+
+                    echo "Running unit tests..."
                     mvn clean test
                 '''
             }
@@ -51,6 +52,7 @@ pipeline {
     }
 
     post {
+
         success {
             echo 'CI pipeline completed successfully.'
         }
